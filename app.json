@@ -19,9 +19,11 @@
       "**/*"
     ],
     "ios": {
+      "package": "com.jamajosa.Lucy",
       "supportsTablet": true
     },
     "android": {
+      "package": "com.jamajosa.Lucy",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
