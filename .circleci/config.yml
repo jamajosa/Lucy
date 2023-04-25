@@ -1,48 +1,39 @@
 version: 2
 jobs:
   build:
-    docker:
-      - image: circleci/node:14.16.0
     working_directory: ~/lucy
+    docker:
+      - image: circleci/node:14.17
     steps:
       - checkout
-      - restore_cache:
-          keys:
-            - lucy-{{ .Branch }}-{{ checksum "yarn.lock" }}
-            - lucy-{{ .Branch }}
-            - lucy-master
-      - run: yarn install
+      - run:
+          name: Install dependencies
+          command: npm install
+      - run:
+          name: Build project
+          command: npm run build
       - save_cache:
-          key: lucy-{{ .Branch }}-{{ checksum "yarn.lock" }}
+          key: npm-v1-{{ checksum "package-lock.json" }}
           paths:
-            - ~/.cache/yarn
-      - run: yarn test
-      - run: npx react-native run-ios --configuration Release
-      - store_artifacts:
-          path: lucy/ios/build/Build/Products/Release-iphonesimulator
-          destination: lucy-build
-  deploy:
-    machine:
-      enabled: true
+            - ./node_modules
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
+  test:
+    working_directory: ~/lucy
+    docker:
+      - image: circleci/node:14.17
     steps:
       - attach_workspace:
-          at: ~/lucy
+          at: .
       - run:
-          name: Deploy to TestFlight
-          command: |
-            fastlane beta
+          name: Test project
+          command: npm run test
 workflows:
-  version: 2
-  build-and-deploy:
+  build_and_test:
     jobs:
-      - build:
-          filters:
-            branches:
-              only: master
-      - deploy:
+      - build
+      - test:
           requires:
             - build
-          filters:
-            branches:
-              only: master
-              # hellod
