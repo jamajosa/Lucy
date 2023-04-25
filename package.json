@@ -8,7 +8,7 @@
     "ios": "expo start --ios",
     "test": "jest",
     "eject": "expo eject",
-    "build": "expo build:android"
+    "build": " eas build -p android"
   },
   "dependencies": {
     "@expo/webpack-config": "^0.17.2",
