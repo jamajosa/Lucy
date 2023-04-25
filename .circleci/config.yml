@@ -15,6 +15,7 @@ jobs:
           root: android/app/build/outputs
           paths:
             - apk
+    publish: false
   deploy:
     requires:
       - build
@@ -32,18 +33,18 @@ jobs:
           command: |
             expo login -u $EXPO_USERNAME -p $EXPO_PASSWORD
             expo publish --release-channel ${CIRCLE_TAG:1} --non-interactive
-workflows:
-  version: 2
-  build-and-deploy:
-    jobs:
-      - build
-      - deploy:
-          requires:
-            - build
-          filters:
-            tags:
-              only: /^v[0-9].*$/
-          environment:
+  workflows:
+    version: 2
+    build-and-deploy:
+      jobs:
+        - build
+        - deploy:
+            requires:
+              - build
+            filters:
+              tags:
+                only: /^v[0-9].*$/
+            environment:
             EXPO_USERNAME: jamajosa
             EXPO_PASSWORD: Basje!23
     # platform: android
