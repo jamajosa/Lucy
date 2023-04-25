@@ -6,8 +6,9 @@
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "web": "expo start --web",
-    "build": "build": "expo build:android -t apk --release-channel production"
+    "test": "jest",
+    "eject": "expo eject",
+    "build": "expo build:android"
   },
   "dependencies": {
     "@expo/webpack-config": "^0.17.2",
