@@ -7,7 +7,7 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "build": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/"
+    "build": "build": "expo build:android -t apk --release-channel production"
   },
   "dependencies": {
     "@expo/webpack-config": "^0.17.2",
