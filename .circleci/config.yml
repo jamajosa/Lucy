@@ -4,6 +4,8 @@ jobs:
     working_directory: ~/lucy
     docker:
       - image: circleci/node:14.17
+        environment:
+          EXPO_CLI_VERSION: "4.4.4"
     steps:
       - checkout
       - run:
@@ -24,6 +26,8 @@ jobs:
     working_directory: ~/lucy
     docker:
       - image: circleci/node:14.17
+        environment:
+          EXPO_CLI_VERSION: "4.4.4"
     steps:
       - attach_workspace:
           at: .
