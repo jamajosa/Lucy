@@ -1,4 +1,4 @@
-version: 2
+version: 2.1
 jobs:
   build:
     working_directory: ~/lucy
@@ -31,7 +31,8 @@ jobs:
           name: Test project
           command: npm run test
 workflows:
-  build_and_test:
+  version: 2
+  build-and-test:
     jobs:
       - build
       - test:
