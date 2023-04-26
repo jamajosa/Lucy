@@ -4,29 +4,14 @@ jobs:
     working_directory: ~/lucy
     docker:
       - image: circleci/node:14.17
-    environment:
-      EXPO_CLI_USERNAME: jamajosa
-      EXPO_CLI_PASSWORD: Basje!23
-      EAS_ANDROID_APP_ID: com.jamajosa.Lucy 
-      EAS_BUILD_PROFILE: release
-      EAS_ANDROID_ENTERPRISE_BUILDS: true
-      EAS_ANDROID_ENTERPRISE_ACCOUNT_NAME: "MyEnterpriseAccount"
-      EAS_ANDROID_ENTERPRISE_ACCOUNT_TOKEN: "MyEnterpriseAccountToken"
-      STORE_FILE: app.keystore
-      STORE_PASSWORD: MyStorePassword
-      KEY_ALIAS: my-key-alias
-      KEY_PASSWORD: MyKeyPassword
     steps:
       - checkout
       - run:
           name: Install dependencies
           command: npm install
       - run:
-          name: Log in to Expo
-          command: npx expo login -u $EXPO_CLI_USERNAME -p $EXPO_CLI_PASSWORD
-      - run:
           name: Build project
-          command: npx eas build -p android 
+          command: npx eas build -p android --debug
       - persist_to_workspace:
           root: .
           paths:
