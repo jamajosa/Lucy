@@ -8,15 +8,6 @@ jobs:
       EXPO_CLI_USERNAME: jamajosa
       EXPO_CLI_PASSWORD: Basje!23
       EAS_ANDROID_APP_ID: com.jamajosa.Lucy
-      EAS_ANDROID_KEYSTORE_PASSWORD: $KEYSTORE_PASSWORD
-      EAS_ANDROID_KEY_ALIAS: $KEY_ALIAS
-      EAS_ANDROID_KEY_PASSWORD: $KEY_PASSWORD
-      EAS_ANDROID_FULL_NAME: $FULL_NAME
-      EAS_ANDROID_ORG_UNIT: $ORG_UNIT
-      EAS_ANDROID_ORG_NAME: $ORG_NAME
-      EAS_ANDROID_CITY: $CITY
-      EAS_ANDROID_STATE: $STATE
-      EAS_ANDROID_COUNTRY_CODE: $COUNTRY_CODE
     steps:
       - checkout
       - run:
@@ -27,7 +18,7 @@ jobs:
           command: npx expo login -u $EXPO_CLI_USERNAME -p $EXPO_CLI_PASSWORD
       - run:
           name: Build project
-          command: npx eas build -p android --skip-credentials-check
+          command: npx eas build -p android --skip-prompt
       - persist_to_workspace:
           root: .
           paths:
