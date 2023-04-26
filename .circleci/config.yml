@@ -7,7 +7,7 @@ jobs:
     environment:
       EXPO_CLI_USERNAME: jamajosa
       EXPO_CLI_PASSWORD: Basje!23
-      EAS_ANDROID_APP_ID: com.jamajosa.Lucy npx eas build -p android --non-interactive --skip-credentials-check
+      EAS_ANDROID_APP_ID: com.jamajosa.Lucy npx eas build -p android --skip-credentials-check
     steps:
       - checkout
       - run:
@@ -18,7 +18,7 @@ jobs:
           command: npx expo login -u $EXPO_CLI_USERNAME -p $EXPO_CLI_PASSWORD
       - run:
           name: Build project
-          command: EAS_ANDROID_APP_ID=com.jamajosa.Lucy npx eas build -p android --non-interactive --skip-credentials-check
+          command: npx eas build -p android --skip-credentials-check
       - persist_to_workspace:
           root: .
           paths:
