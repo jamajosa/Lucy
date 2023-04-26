@@ -11,7 +11,7 @@ jobs:
           command: npm install
       - run:
           name: Build project
-          command: npx eas build -p android --debug
+          command: npx eas build -p android --profile development
       - persist_to_workspace:
           root: .
           paths:
