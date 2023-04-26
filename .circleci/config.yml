@@ -26,7 +26,7 @@ jobs:
           command: npx expo login -u $EXPO_CLI_USERNAME -p $EXPO_CLI_PASSWORD
       - run:
           name: Build project
-          command: npx eas build -p android --non-interactive --skip-credentials-check
+          command: npx eas build -p android 
       - persist_to_workspace:
           root: .
           paths:
