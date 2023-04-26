@@ -7,7 +7,17 @@ jobs:
     environment:
       EXPO_CLI_USERNAME: jamajosa
       EXPO_CLI_PASSWORD: Basje!23
-      EAS_ANDROID_APP_ID: com.jamajosa.Lucy npx eas build -p android --skip-credentials-check
+      EAS_ANDROID_APP_ID: com.jamajosa.Lucy
+      EAS_ANDROID_KEYSTORE_PASSWORD: 1Welkom1
+      EAS_ANDROID_KEY_ALIAS: lucy
+      EAS_ANDROID_KEY_PASSWORD: 1Welkom1
+      EAS_ANDROID_FULL_NAME: Jordy
+      EAS_ANDROID_ORG_UNIT: geenidee
+      EAS_ANDROID_ORG_NAME: geenidee
+      EAS_ANDROID_CITY: boz
+      EAS_ANDROID_STATE: none
+      EAS_ANDROID_COUNTRY_CODE: NL
+      npx eas build -p android --skip-credentials-check
     steps:
       - checkout
       - run:
