@@ -10,5 +10,7 @@ jobs:
         uses: aslamanver/react-native-docker@v1
       - name: Install NPM Dependencies
         run: npm install
+      - name: RUN EAS INSTALL
+        run: npm i eas-cli
       - name: Run NX Dev Android Build
-        run: npx nx build lucy
+        run: npx eas-cli build --platform all --non-interactive
