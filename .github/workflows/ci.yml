@@ -11,4 +11,4 @@ jobs:
       - name: Install NPM Dependencies
         run: npm install
       - name: Run NX Dev Android Build
-        run: expo start --android
+        run: npx nx build lucy
