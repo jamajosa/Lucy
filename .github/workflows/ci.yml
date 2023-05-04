@@ -16,7 +16,7 @@ jobs:
         env:
           EXPO_TOKEN: ${{ secrets.EAS_BUILD_TOKEN }}
         run: |
-          expo login --non-interactive --username ${{ secrets.EXPO_USERNAME }} --password ${{ secrets.EXPO_PASSWORD }}
-          expo whoami
+          npx expo login --non-interactive --username ${{ secrets.EXPO_USERNAME }} --password ${{ secrets.EXPO_PASSWORD }}
+          npx expo whoami
       - name: Run NX Dev Android Build
         run: npx eas-cli build --platform all --non-interactive
