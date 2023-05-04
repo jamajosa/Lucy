@@ -1,32 +1,14 @@
-name: CI
 on: [push]
-
 jobs:
-  lint-and-test:
+  react_native_ci_job:
     runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
+    name: React Native CI Build
     steps:
-      # Checks out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-
-      - name: Find yarn cache location
-        id: yarn-cache
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-
-      - name: JS package cache
-        uses: actions/cache@v1
-        with:
-          path: $(( steps.yarn-cache.outputs.dir ))
-          key: $(( runner.os ))-yarn-$(( hashFiles('**/yarn.lock') ))
-          restore-keys: |
-            $(( runner.os ))-yarn-
-
-      - name: Install Node Modules
-        run: yarn install
-
-      - name: Run Lint
-        run: yarn lint
-
-      - name: Run tests
-        run: yarn test 
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: React Native CI
+        uses: aslamanver/react-native-docker@v1
+      - name: Install NPM Dependencies
+        run: npm install
+      - name: Run NX Dev Android Build
+        run: npx nx build-android mobile
