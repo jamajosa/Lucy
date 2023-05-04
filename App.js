@@ -1,4 +1,3 @@
-import "babel-polyfill";
 import { useCallback, useEffect, useState } from 'react';
 import { StyleSheet} from "react-native";
 import {useFonts} from "expo-font";
