@@ -1,5 +1,4 @@
 module.exports = {
-  testEnvironment: 'jsdom',
   globals: {
     __DEV__: true
   },
