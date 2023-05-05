@@ -57,14 +57,5 @@
   "description": "",
   "nx": {
     "targets": {}
-  },
-  "jest": {
-    "transform": {
-      "^.+\\.(js|jsx|ts|tsx)$": "babel-jest"
-    },
-    "moduleNameMapper": {
-      "^react-native$": "react-native-web"
-    },
-    "testEnvironment": "node"
   }
 }
