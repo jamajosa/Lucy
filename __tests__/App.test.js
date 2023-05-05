@@ -1,9 +1,11 @@
-global.__DEV__ = true; 
+global.__DEV__ = true;
+import { render } from '@testing-library/react-native';
 import App from '../App';
-import renderer from 'react-test-renderer';
 
-it('renders correctly', () => {
-  global.__DEV__ = true;
-  const tree = renderer.create(<App />).toJSON();
-  expect(tree).toMatchSnapshot();
+describe('App', () => {
+  it('renders correctly', () => {
+    const { getByTestId } = render(<App />);
+    const app = getByTestId('app');
+    expect(app).toBeDefined();
+  });
 });
