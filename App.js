@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { StyleSheet} from "react-native";
-import {useFonts} from "expo-font";
+import {useFonts} from "expo-font/build/Fonts";
 import * as Font from 'expo-font';
 //import AppLoading from "expo-app-loading";
 //import SignUpScreenMail from './src/screens/SignUpScreens/SignUpEmail';
