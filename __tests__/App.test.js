@@ -1,3 +1,4 @@
+global.__DEV__ = true; 
 import App from '../App';
 import renderer from 'react-test-renderer';
 
