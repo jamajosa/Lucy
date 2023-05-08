@@ -1,4 +1,5 @@
 module.exports = {
+  preset: "react-native",
   globals: {
     __DEV__: true
   },
@@ -8,5 +9,25 @@ module.exports = {
   },
   transformIgnorePatterns: [
     "node_modules/(?!react-native)/"
+  ],
+  moduleNameMapper: {
+    '^react-native$': 'react-native-web',
+    '^@react-native-community/(.*)$': '@react-native-community/$1',
+    '^@expo/(.*)$': '<rootDir>/node_modules/expo/build/$1',
+    '^expo$': '<rootDir>/node_modules/expo/build/Expo.fx.js',
+    '^(.*)\\.(jpg|jpeg|png|gif)$': '<rootDir>/__mocks__/fileMock.js',
+    '^./Libraries/Utilities/Platform$': '<rootDir>/node_modules/react-native/Libraries/Utilities/Platform.android.js',
+    '^./Libraries/Utilities/Platform\\.android$': '<rootDir>/node_modules/react-native/Libraries/Utilities/Platform.android.js',
+    '^./Libraries/Utilities/Platform\\.ios$': '<rootDir>/node_modules/react-native/Libraries/Utilities/Platform.ios.js',
+  },
+  moduleFileExtensions: [
+    "js",
+    "mjs",
+    "cjs",
+    "jsx",
+    "ts",
+    "tsx",
+    "json",
+    "node"
   ]
 };

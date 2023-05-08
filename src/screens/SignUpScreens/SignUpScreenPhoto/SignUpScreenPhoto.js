@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react';
 import { StyleSheet, Text, View,Image,Pressable,KeyboardAvoidingView,Keyboard,TouchableOpacity   } from "react-native";
-import * as ImagePicker from 'expo-image-picker';
+import {ImagePicker} from 'expo-image-picker';
 
 const SignUpScreenPhoto = ({navigation}) => {
   const [image, setImage] = useState(null);

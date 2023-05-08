@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Text, View, StyleSheet, Image, Modal, TouchableOpacity , Pressable } from 'react-native';
 import { getPreciseDistance } from "geolib";
 import { StatusBar } from "expo-status-bar";
-import * as Location from 'expo-location';
+import {Location} from 'expo-location';
 
 const WalkingScreen = ({ navigation }) => {
 

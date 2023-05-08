@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { StyleSheet} from "react-native";
-import {useFonts} from "expo-font/build/Fonts";
-import * as Font from 'expo-font';
+import {useFonts, Font} from "expo-font";
 //import AppLoading from "expo-app-loading";
 //import SignUpScreenMail from './src/screens/SignUpScreens/SignUpEmail';
 import SignUpScreenPass from './src/screens/SignUpScreens/SignUpScreenPass/SignUpScreenPass';
@@ -10,7 +9,7 @@ import SignUpScreenPhoto from './src/screens/SignUpScreens/SignUpScreenPhoto/Sig
 import WalkingScreen from './src/screens/WalkingScreen/WalkingScreen';
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import * as SplashScreen from 'expo-splash-screen';
+import {SplashScreen} from 'expo-splash-screen';
 
 const Stack = createNativeStackNavigator();
 
