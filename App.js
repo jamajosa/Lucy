@@ -8,10 +8,10 @@ import SignUpScreenMail from './src/screens/SignUpScreens/SignUpScreenEmail/Sign
 import SignUpScreenPhoto from './src/screens/SignUpScreens/SignUpScreenPhoto/SignUpScreenPhoto';
 import WalkingScreen from './src/screens/WalkingScreen/WalkingScreen';
 import { NavigationContainer } from "@react-navigation/native";
-import  createNativeStackNavigator  from "@react-navigation/native-stack";
-import {SplashScreen} from 'expo-splash-screen';
 
-const Stack = createNativeStackNavigator();
+import {SplashScreen} from 'expo-splash-screen';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+const Stack = createNativeStackNavigator;
 
 const getFonts = () =>
 Font.loadAsync({

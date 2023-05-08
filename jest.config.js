@@ -1,5 +1,6 @@
 module.exports = {
   preset: "react-native",
+  setupFilesAfterEnv: ['@testing-library/jest-native/extend-expect'],
   globals: {
     __DEV__: true
   },
@@ -19,6 +20,7 @@ module.exports = {
     '^./Libraries/Utilities/Platform$': '<rootDir>/node_modules/react-native/Libraries/Utilities/Platform.android.js',
     '^./Libraries/Utilities/Platform\\.android$': '<rootDir>/node_modules/react-native/Libraries/Utilities/Platform.android.js',
     '^./Libraries/Utilities/Platform\\.ios$': '<rootDir>/node_modules/react-native/Libraries/Utilities/Platform.ios.js',
+    '^@react-navigation/native-stack$': '<rootDir>/node_modules/@react-navigation/native/lib/module/index.js',
   },
   moduleFileExtensions: [
     "js",
@@ -29,5 +31,6 @@ module.exports = {
     "tsx",
     "json",
     "node"
-  ]
+  ],
+  testPathIgnorePatterns: ['/node_modules/', '/e2e/']
 };
