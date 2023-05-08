@@ -32,5 +32,9 @@ module.exports = {
     "json",
     "node"
   ],
-  testPathIgnorePatterns: ['/node_modules/', '/e2e/']
+  testPathIgnorePatterns: ['/node_modules/', '/e2e/'],
+  testMatch: [
+    '**/__tests__/**/*.[jt]s?(x)',
+    '**/?(*.)+(spec|test).[jt]s?(x)'
+  ]
 };
