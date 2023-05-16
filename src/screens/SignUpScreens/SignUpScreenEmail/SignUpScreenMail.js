@@ -1,10 +1,12 @@
 import {useEffect, useState} from 'react'
 import { StyleSheet, Text, View,Image,TextInput,Pressable,KeyboardAvoidingView,Keyboard    } from "react-native";
+import dbConnect from '../../../../dbConnect';
 
 const SignUpScreenMail = ({navigation}) => {
     const [isKeyboardOpen, setIsKeyboardOpen] = useState(false);
     const [fieldsAreOk, setFieldsAreOk] = useState(false);
-
+    const [bearerToken, setBearer] = useState([]);
+    const [i, seti] = useState(0);
     const checkFields = (text) =>{
       const reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
       if (reg.test(text) === true){
@@ -16,6 +18,23 @@ const SignUpScreenMail = ({navigation}) => {
       
     }
 
+    function dbConn() {
+      const user = "user@example.com";
+      const password = "password123";
+      const con = dbConnect.getBearerToken(user, password);
+      setBearer(con);
+      seti(1);
+      return con
+      
+    }
+    
+    useEffect(() => {
+      console.log([bearerToken]);
+    }, [bearerToken]);
+  
+    const handleButtonPress = () => {
+      setMyVariable('New value');
+    };
     useEffect(() => {
         Keyboard.addListener("keyboardDidShow", () =>
           setIsKeyboardOpen(true)
@@ -44,9 +63,9 @@ const SignUpScreenMail = ({navigation}) => {
         <KeyboardAvoidingView keyboardVerticalOffset style={[styles.container3, isKeyboardOpen == true ? {display: "none"} : null]}>
         </KeyboardAvoidingView>
         <View style={[styles.container4]} >
-        <Pressable style={styles.button} onPress={() => [fieldsAreOk == true ? navigation.navigate("SignUp password",{email: "jordyhu@live.nl"}) : alert("Dit is geen geldig email adres")]}>
-      <Text style={[styles.Texts3]}>Ga verder</Text>
-    </Pressable> 
+        <Pressable style={styles.button} onPress={() =>dbConn()} >
+          <Text style={[styles.Texts3]}>Ga verder</Text>
+        </Pressable>
         </View>
         <KeyboardAvoidingView keyboardVerticalOffset  style={[styles.container5, isKeyboardOpen == true ? null : null]}>
       <Text style={[styles.Texts]}>....</Text>

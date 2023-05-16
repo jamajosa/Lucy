@@ -1,12 +1,11 @@
-global.__DEV__ = true;
-jest.autoMockOff();
-import { render } from '@testing-library/react-native';
+import 'react-native';
+import renderer from 'react-test-renderer';
 import App from '../App';
 
-describe('App', () => {
-  it('renders correctly', () => {
-    const { getByTestId } = render(<App />);
-    const app = getByTestId('app');
-    expect(app).toBeDefined();
-  });
+test('renders correctly', () => {
+  const tree = renderer
+    .create(<App/>)
+    .toJSON();
+    expect(3).toContain(tree);
+  expect(tree).toMatchSnapshot();
 });

@@ -1,46 +1,37 @@
-import { useCallback, useEffect, useState } from 'react';
-import { StyleSheet} from "react-native";
-import {useFonts, Font} from "expo-font";
-//import AppLoading from "expo-app-loading";
-//import SignUpScreenMail from './src/screens/SignUpScreens/SignUpEmail';
-import SignUpScreenPass from './src/screens/SignUpScreens/SignUpScreenPass/SignUpScreenPass';
+import { useEffect, useState } from 'react';
+import { StyleSheet } from 'react-native';
+import * as Font from 'expo-font';
+import { SplashScreen } from 'expo';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import SignUpScreenMail from './src/screens/SignUpScreens/SignUpScreenEmail/SignUpScreenMail';
+import SignUpScreenPass from './src/screens/SignUpScreens/SignUpScreenPass/SignUpScreenPass';
 import SignUpScreenPhoto from './src/screens/SignUpScreens/SignUpScreenPhoto/SignUpScreenPhoto';
 import WalkingScreen from './src/screens/WalkingScreen/WalkingScreen';
-import { NavigationContainer } from "@react-navigation/native";
-
-import {SplashScreen} from 'expo-splash-screen';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-const Stack = createNativeStackNavigator;
-
-const getFonts = () =>
-Font.loadAsync({
-  stratos: require("./assets/fonts/Stratos-Regular.ttf"),
-});
-
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   const [appIsReady, setAppIsReady] = useState(false);
-  const [fontsloaded] = useFonts({
-    'stratos': require("./assets/fonts/Stratos-Regular.ttf"),
-  })
+
+  if (__DEV__) {
+    console.log('Running in development mode');
+  } else {
+    console.log('Running in production mode');
+  }
+  
   useEffect(() => {
     async function prepare() {
       try {
-        // Keep the splash screen visible while we fetch resources
         await SplashScreen.preventAutoHideAsync();
-        // Pre-load fonts, make any API calls you need to do here
         await Font.loadAsync({
-          'stratos': require("./assets/fonts/Stratos-Regular.ttf"),
-        })
-        // Artificially delay for two seconds to simulate a slow loading
-        // experience. Please remove this if you copy and paste the code!
+          stratos: require('./assets/fonts/Stratos-Regular.ttf'),
+        });
         await new Promise(resolve => setTimeout(resolve, 2000));
       } catch (e) {
         console.warn(e);
       } finally {
-        // Tell the application to render
         setAppIsReady(true);
+        SplashScreen.hideAsync();
       }
     }
 
@@ -48,20 +39,8 @@ export default function App() {
   }, []);
 
 
-  const onLayoutRootView = useCallback(async () => {
-    if (appIsReady) {
-      await SplashScreen.hideAsync();
-    }
-  }, [appIsReady]);
-
-  if (!appIsReady) {
-    return null;
-  }
-
-
   return (
-  //you can return any component of your choice here     
-    <NavigationContainer onReady={onLayoutRootView}>
+    <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen 
         name="Walking"
@@ -85,7 +64,6 @@ export default function App() {
         />
       </Stack.Navigator>
     </NavigationContainer>
-    
   );
 }
 
@@ -94,12 +72,11 @@ const styles = StyleSheet.create({
     flex: 1,
     width: null,
     height: null,
-    backgroundColor: "#F1F7F8",
-    alignItems: "center",
-    justifyContent: "center",
-    
+    backgroundColor: '#F1F7F8',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
-  Texts: {
-    fontFamily: "stratos",
+  text: {
+    fontFamily: 'stratos',
   },
 });

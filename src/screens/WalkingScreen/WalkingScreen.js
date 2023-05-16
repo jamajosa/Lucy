@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Text, View, StyleSheet, Image, Modal, TouchableOpacity , Pressable } from 'react-native';
 import { getPreciseDistance } from "geolib";
 import { StatusBar } from "expo-status-bar";
-import {Location} from 'expo-location';
+import * as Location from 'expo-location'; // Modified import statement
 
 const WalkingScreen = ({ navigation }) => {
 
@@ -30,66 +30,122 @@ const WalkingScreen = ({ navigation }) => {
 
   const [positionArray,setPositionArray] = useState([
   {
-    longtitude: 4.294040,
-    latitude: 51.493036,
+    longtitude: 4.28476,
+    latitude: 51.495677,
     distance: null,
     angle: null,
     finished:false,
-    subInformation: "Dit oude pand voorheen van de GGD is nieuw leven ingeblazen en is nu een bruisende plek met een sociaal, innovatief en maatschappelijk karakter.",
-    title: "De ZuidOost",
+    subInformation: "Het Markiezenhof is een laatgotisch stadspaleis in de stad Bergen op Zoom, in de Nederlandse provincie Noord-Brabant. Het was de residentie van de heren en later de markiezen van Bergen op Zoom. In het pand vinden tentoonstellingen en evenementen plaats. Het is een rijksmonument en behoort tot de 'Top 100 van de Rijksdienst voor de Monumentenzorg' uit 1990.",
+    title: "Het Markiezenhof",
     imageUrl:
-      "https://scontent-ams4-1.xx.fbcdn.net/v/t39.30808-6/305109117_561682589087134_9186682577357353177_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=CHgNJTA0mZQAX91ykAW&_nc_ht=scontent-ams4-1.xx&oh=00_AfAPY1RGlmOAVl-ZQRpmjGAPYxspLf7QWcSS7IzNk9pSKw&oe=63A95E75",
+      "https://media.indebuurt.nl/bergenopzoom/2020/03/04115302/120099-1-scaled.jpg",
   },
   {
-    longtitude: 4.292914,
-    latitude: 51.492205,
+    longtitude: 4.286523179756908,
+    latitude: 51.49458617537634,
     distance: null,
     angle: null,
     finished:false,
-    subInformation: "Voor de heerlijke puddingkoeken, Belgische worstenbroodjes, Bergse Bastaert en verse broden ga je naar deze ambachtelijke bakker. Of je nu jezelf wil trakteren op iets lekkers of dat wil delen met vrienden of collega’s, je wordt er blij van.",
-    title: "Bakker Groffen",
+    subInformation: "Hotel de Draak (vroeger De Draeck) is een hotel gelegen aan de Grote Markt in Bergen op Zoom. Het is het oudste hotel van Nederland.Het huidige Hotel de Draak, aan de Grote Markt 38, is gevestigd in een pand uit 1397 dat het resultaat is van een ingrijpende verbouwing. De met tongewelven overdekte kelders stammen nog uit het 14e-eeuwse pand.",
+    title: "Hotel de Draak",
     imageUrl:
-      "https://www.bakkergroffen.nl/wp-content/uploads/2015/11/p-543-_DSC8538.jpg",
+      "https://i.pinimg.com/736x/7a/60/cb/7a60cb463e52b7173817f4373b099aab--bergen-zoom.jpg",
   },
   {
-    longtitude: 4.293727,
-    latitude: 51.490869,
+    longtitude: 4.287478449275487,
+    latitude: 51.49446649011488,
     distance: null,
     angle: null,
     finished:false,
-    subInformation: "Vraagwijzer is een plaats waar u terecht kunt met uw vragen waar u zelf niet aan uitkomt of niet weet waar u moet zijn.",
-    title: "Vraagwijzer",
+    subInformation: "Deze klokkentoren moet rond 1370 gebouwd zijn. In 1442 wordt de Sint-Gertrudiskerk verheven tot kapittelkerk. De kerk is daarom in opdracht van Jan II van Glymes uitgebreid. De opdracht hiervoor werd in 1443 aan de uit Antwerpen afkomstige Everaert Spoorwater gegeven. Nog voor dat hij zijn ontwerp kan verwezenlijken breekt er een grote stadsbrand uit.",
+    title: "De Peperbus",
     imageUrl:
-      "https://roos-vandewerk.nl/wp-content/uploads/VraagWijzer-Rotterdam-Logo.jpg",
+      "https://media.indebuurt.nl/bergenopzoom/2020/02/04121204/peperbus-groot.jpg",
   },
 	{
-		longtitude: 4.292846,
-		latitude: 51.491871,
+		longtitude: 4.290067708371838,
+		latitude: 51.49417735026132,
 		distance: null,
     angle: null,
     finished:false,
-		subInformation: "Bij de gemeente Bergen op Zoom kun je terecht voor oa. vergunningen, paspoorten, rijbewijzen, aangifte van trouwen, geboorte, overlijden en verhuizingen.",
-		title: "Gemeentehuis",
+		subInformation: "Aan het eind van de 18e eeuw ontstond in Bergen op Zoom een kleine gemeenschap van Asjkenazische Joden. Zij gebruikten de zolder van de Boterwaag als synagoge. Toen ze daar niet meer terechtkonden, schonk Koning Willem I hun 1000 gulden om een synagoge te bouwen. Deze werd gebouwd aan de Parade, een gedeelte dat nu de Koevoetstraat is.",
+		title: "De Synagoge",
 		imageUrl:
-		  "https://cuatro.sim-cdn.nl/bergenopzoom/uploads/stadskantoor6.jpg",
+		  "https://media.indebuurt.nl/bergenopzoom/2019/09/04132024/img_9517.jpg",
 	  },
 	  {
-		longtitude: 4.292765,
-		latitude: 51.494130,
+		longtitude: 4.282114589998839,
+		latitude: 51.49518015858844,
 		distance: null,
     angle: null,
     finished:false,
-		subInformation: "Word een echte horecaspecialist bij Curio Meeussenstraat 13. Jij leert hier alles over horeca, food of hospitality. Denk aan bedienen, organiseren en koken.",
-		title: "Curio",
+		subInformation: "De Gevangenenpoort in Bergen op Zoom is het oudste monument van de stad. De poort dateert uit de 14e eeuw en is een van de overgebleven voorbeelden van stadspoorten zoals die in de middeleeuwen in Nederlandse steden te vinden waren. Het is de enige stadspoort overgebleven in Bergen op Zoom, en een rijksmonument.",
+		title: "De Gevangenenpoort",
 		imageUrl:
-		  "https://www.curio.nl/media/mrde5r5e/locatie-curio-meeussenstraat-13-1.jpg?anchor=center&mode=crop&width=1280&height=0&rnd=132494817208570000&quality=70",
+		  "https://www.brabantserfgoed.nl/image/2017/10/12/stadspoort.png%28%29%2817AB51612BE7DFA34F1D6FD8F09395BD%29.jpg",
 	  },
+    {
+      longtitude: 4.286493401058739,
+      latitude: 51.49448719349763,
+      distance: null,
+      angle: null,
+      finished:false,
+      subInformation: "De Kerk van de Heilige Maagd Maria-Tenhemelopneming is een gebouw dat van 1829 tot 1987 dienstgedaan heeft als de parochiekerk van Bergen op Zoom. De kerk bevindt zich aan de Grote Markt 32. Eind 18e eeuw bleef de historische Sint-Gertrudiskerk in handen van de protestanten. Tegenwoordig is het gebouw een theater.",
+      title: "De Maagd",
+      imageUrl:
+        "https://media.indebuurt.nl/bergenopzoom/2018/06/04165332/maagd-1.jpg",
+      },
+    {
+      longtitude: 4.2872167334543,
+      latitude: 51.49394020192132,
+      distance: null,
+      angle: null,
+      finished:false,
+      subInformation: "Den Enghel, een markant gebouw op de Grote Markt van de historische stad Bergen op Zoom. Een huis met een lange geschiedenis, want Den Enghel is al aardig op leeftijd en was in de 14 e eeuw al een behoorlijk groot huis. In 1397 kocht ene Jan van Cleve een erf op de Grote Markt nabij het Vleeshuis.",
+      title: "Den Enghel",
+      imageUrl:
+        "https://theaterdenenghel.nl/____impro/1/onewebmedia/foto%20pand1.jpg?etag=%222ae978-5ef07d22%22&sourceContentType=image%2Fjpeg&quality=85",
+      },
+      {
+        longtitude: 4.275991628889773,
+        latitude: 51.49293758225225,
+        distance: null,
+        angle: null,
+        finished:false,
+        subInformation: "De Zeeland was een suikerfabriek in Bergen op Zoom die tussen 1917 en 1929 in bedrijf is geweest. De fabriek werd geëxploiteerd door de vereniging Coöperatieve Beetwortelsuikerfabriek Zeeland. Enkele overgebleven imposante fabrieksgebouwen zijn thans voorbeelden van industrieel erfgoed in de gemeente Bergen op Zoom.",
+        title: "De Zeeland",
+        imageUrl:
+          "https://media.indebuurt.nl/bergenopzoom/2021/02/18151417/De-Zeeland-Suikerfabriek-1967.jpg",
+        },
+
+        {
+          longtitude: 4.292196806549184,
+          latitude: 51.4987709540389,
+          distance: null,
+          angle: null,
+          finished:false,
+          subInformation: "Het Ravelijn is het laatste restant van de imposante vestingwerken rondom de stad. De beroemde Nederlandse vestingbouwer Menno van Coehoorn ontwierp ook in Bergen op Zoom de vestingwerken. Hij creëerde in 1702 een ingenieus ontwerp. Daarom ging men ervan uit dat Bergen op Zoom nooit kon worden ingenomen. Daaraan dankte de stad zijn bijnaam “La Pucelle”, oftewel de maagd. Helaas namen de Fransen in 1747 Bergen op Zoom toch in.",
+          title: "Het Ravelijn",
+          imageUrl:
+            "https://media.indebuurt.nl/bergenopzoom/2020/08/04105059/boz001025978.jpg",
+          },
+          {
+            longtitude: 4.279641575607404,
+            latitude: 51.496701497968594,
+            distance: null,
+            angle: null,
+            finished:false,
+            subInformation: "Gebouw-T is tegenwoordig een poppodium, maar was vroeger een onderdeel van de militaire gebouwen voor de paarden. Meerdere blokkenstallen zorgden voor onderdak van ontzettend veel paarden. De eerste blokstal werd rond 1700 gebouwd op de Nieuwe Markt",
+            title: "Gebouw-T",
+            imageUrl:
+              "https://media.indebuurt.nl/bergenopzoom/2019/04/04142332/boz001037387.jpg",
+            },
   ]);
 
 
   useEffect(() => {
     const observerCallback = async (position, heading) => {
-      //console.log(heading);
+      console.log(heading);
       if (position && position.coords) {
         await setCurrentPosition(position);
         await pushClosestPosition(position);     
@@ -233,7 +289,7 @@ function calculateBearing(startCoords, targetCoords) {
         />
       </View>
       <View style={styles.container2}>
-        {closestPosition !== null &&  closestPosition.distance <= 15 
+        {closestPosition !== null &&  closestPosition.distance <= 60
           ? <Pulse
               color="#008000"
               numPulses={1}
@@ -242,7 +298,7 @@ function calculateBearing(startCoords, targetCoords) {
               Duration={1000}
             />
           : null}
-        {closestPosition !== null &&  closestPosition.distance > 10 && closestPosition.distance <= 30 
+        {closestPosition !== null &&  closestPosition.distance > 50 && closestPosition.distance <= 150
           ? <Pulse
               color="#9ACD32"
               numPulses={1}
@@ -251,7 +307,7 @@ function calculateBearing(startCoords, targetCoords) {
               Duration={1000}
             />
           : null}
-        {closestPosition !== null && closestPosition.distance > 20 && closestPosition.distance <= 55 
+        {closestPosition !== null && closestPosition.distance > 100 && closestPosition.distance <= 300
           ? <Pulse
               color="#e6e600"
               numPulses={1}
@@ -260,7 +316,7 @@ function calculateBearing(startCoords, targetCoords) {
               Duration={1000}
             />
           : null}
-        {closestPosition !== null && closestPosition.distance > 45 && closestPosition.distance <= 80 
+        {closestPosition !== null && closestPosition.distance > 200 && closestPosition.distance <= 550
           ? <Pulse
               color="#FFAE42"
               numPulses={1}
@@ -269,7 +325,7 @@ function calculateBearing(startCoords, targetCoords) {
               Duration={1000}
             />
           : null}
-        {closestPosition !== null && closestPosition.distance > 70 && closestPosition.distance <= 110 
+        {closestPosition !== null && closestPosition.distance > 450 && closestPosition.distance <= 850
           ? <Pulse
               color="#FF5349"
               numPulses={1}
@@ -278,7 +334,7 @@ function calculateBearing(startCoords, targetCoords) {
               Duration={1000}
             />
           : null}
-        {closestPosition !== null && closestPosition.distance > 100 && closestPosition.distance <= 150 
+        {closestPosition !== null && closestPosition.distance > 750 && closestPosition.distance <= 1500
           ? <Pulse
               color="#FF0000"
               numPulses={1}
